@@ -9,7 +9,7 @@ __all__ = ['simplify']
 def partition(pred, list_):
     # Partition the items in lists / non-lists
     list_ = [x for x in list_ if x]
-    lists = filter(pred, list_)
+    lists = list(filter(pred, list_))
     not_lists = itertools.filterfalse(pred, list_)
     return (lists, not_lists)
 
@@ -83,7 +83,7 @@ predicates = {
         }
 
 def predicate(tree):
-    for (cls, f) in predicates.items():
+    for (cls, f) in list(predicates.items()):
         if isinstance(tree, cls):
             return f(tree)
     return tree
